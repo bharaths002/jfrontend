@@ -17,6 +17,8 @@ import {
 } from '@mantine/core';
 
 import { notifications } from '@mantine/notifications';
+import { useLoader } from '@/context/LoaderContext';
+
 import { api } from '@/services/api';
 
 import {
@@ -563,6 +565,7 @@ export function CreateJobForm({
     initialData,
 }: CreateJobFormProps) {
     const isUpdate = mode === 'update';
+    const { showLoader, hideLoader } = useLoader();
 
     // Derive experience preset/custom from a raw experience string
     const PRESET_VALUES: ExperiencePreset[] = [
@@ -643,7 +646,8 @@ export function CreateJobForm({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!validate()) return;
+        if (!validate()) return;  
+        showLoader(isUpdate ? 'update' : 'publish');
 
         setIsLoading(true);
         try {
@@ -668,7 +672,7 @@ export function CreateJobForm({
                         : 'Your job opening is now live.',
                     color: 'green',
                     position: 'bottom-right',
-                    autoClose: 2000,
+                    autoClose: 4000,
                 });
             } else {
                 notifications.show({
@@ -676,7 +680,7 @@ export function CreateJobForm({
                     message: 'Something went wrong. Please try again.',
                     color: 'red',
                     position: 'bottom-right',
-                    autoClose: 2000,
+                    autoClose: 4000,
                 });
             }
         } catch (error) {
@@ -686,9 +690,10 @@ export function CreateJobForm({
                 message: error instanceof Error ? error.message : 'An unexpected error occurred.',
                 color: 'red',
                 position: 'bottom-right',
-                autoClose: 2000,
+                autoClose: 4000,
             });
         } finally {
+            hideLoader();
             setIsLoading(false);
         }
     };
@@ -696,6 +701,7 @@ export function CreateJobForm({
     const handleDraftSave = async (e: React.MouseEvent) => {
         e.preventDefault();
         if (!validate()) return;
+        showLoader('draft');
         setIsLoading(true);
         try {
             const payload = {
@@ -719,7 +725,7 @@ export function CreateJobForm({
                         : 'Job saved to drafts successfully.',
                     color: 'violet',
                     position: 'bottom-right',
-                    autoClose: 2000,
+                    autoClose: 4000,
                 });
             } else {
                 notifications.show({
@@ -727,7 +733,7 @@ export function CreateJobForm({
                     message: 'Could not save draft. Please try again.',
                     color: 'red',
                     position: 'bottom-right',
-                    autoClose: 2000,
+                    autoClose: 4000,
                 });
             }
         } catch (error) {
@@ -737,7 +743,7 @@ export function CreateJobForm({
                 message: error instanceof Error ? error.message : 'An unexpected error occurred.',
                 color: 'red',
                 position: 'bottom-right',
-                autoClose: 2000,
+                autoClose: 4000,
             });
         } finally {
             setIsLoading(false);
@@ -826,7 +832,7 @@ export function CreateJobForm({
                     flexDirection: 'column',
                 },
                 header: { display: 'none' },
-                inner: { padding: '8px' },
+                inner: { padding: '16px 24px' },
             }}
         >
             {/* ── Sticky title bar ── */}
