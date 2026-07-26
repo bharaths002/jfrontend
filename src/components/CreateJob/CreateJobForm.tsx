@@ -746,6 +746,7 @@ export function CreateJobForm({
                 autoClose: 4000,
             });
         } finally {
+             hideLoader();
             setIsLoading(false);
         }
     };
