@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Container, SimpleGrid, Box } from '@mantine/core';
-import { Navbar } from '@/components/Layout/Navbar';
-import { SearchFilters } from '@/components/JobSearch/SearchFilters';
 import { JobCard } from '@/components/JobList/JobCard';
 import { CreateJobForm } from '@/components/CreateJob/CreateJobForm';
 import { api } from '@/services/api';
