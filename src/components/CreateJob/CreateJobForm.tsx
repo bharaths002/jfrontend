@@ -109,14 +109,6 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
         return () => document.removeEventListener('mousedown', handler);
     }, [open]);
 
-    useEffect(() => {
-        if (!open || !dropdownRef.current) return;
-        const rect = dropdownRef.current.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight - 8) {
-            dropdownRef.current.style.top = 'auto';
-            dropdownRef.current.style.bottom = 'calc(100% + 6px)';
-        }
-    }, [open]);
 
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
     const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay();
@@ -231,7 +223,7 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
                     ref={dropdownRef}
                     style={{
                         position: 'absolute',
-                        top: 'calc(100% + 6px)',
+                        bottom: 'calc(100% + 6px)',
                         left: 0,
                         right: 0,
                         zIndex: 9999,
