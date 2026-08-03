@@ -180,12 +180,12 @@ DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME
 NODE_ENV=production
 DB_SYNCHRONIZE=false
 CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
-FRONTEND_URL=https://your-vercel-url.vercel.app
+FRONTEND_URL=https://jfrontend.vercel.app/
 ```
 
 ### Frontend (Vercel)
 ```
-NEXT_PUBLIC_API_URL=https://your-render-url.onrender.com
+NEXT_PUBLIC_API_URL=https://jbackend-rk8u.onrender.com
 ```
 
 ---
