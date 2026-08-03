@@ -5,8 +5,8 @@
 A full-stack job board management platform built with **Next.js**, **NestJS**, **PostgreSQL**, and **Cloudinary**.  
 Create, manage, publish, and draft job openings with a clean, modern UI.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://jfrontend.vercel.app)
-[![Backend API](https://img.shields.io/badge/Backend%20API-Render-46E3B7?style=for-the-badge&logo=render)](https://jbackend-rk8u.onrender.com)
+[![Live Demo](https://jfrontend.vercel.app)]
+[![Backend API](https://jbackend-rk8u.onrender.com)]
 [![GitHub Frontend](https://img.shields.io/badge/Frontend-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/bharaths002/jfrontend)
 [![GitHub Backend](https://img.shields.io/badge/Backend-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/bharaths002/jbackend)
 
@@ -196,7 +196,7 @@ NEXT_PUBLIC_API_URL=https://your-render-url.onrender.com
 Software Associate Engineer @ Negits Solutions, Chennai  
 Full Stack Developer | Node.js · React.js · Vue.js · NestJS · PostgreSQL · AWS
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/bharaths002)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](www.linkedin.com/in/bharaths18)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/bharaths002)
 
 ---
