@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, Text, Group, Button, Box, Badge, Stack, Image } from '@mantine/core';
-import { IconTrash, IconEdit } from '@tabler/icons-react';
+import { IconTrash, IconEdit,IconMapPin } from '@tabler/icons-react';
 import { api } from '@/services/api';
 
 interface JobCardProps {
@@ -139,10 +139,39 @@ export function JobCard({
       </Group>
 
       {/* ── Title + company ── */}
-      <Stack gap={5} mb="md">
-        <Text fw={600} size="lg" lineClamp={2}>{title}</Text>
-        <Text size="sm" c="dimmed">{company}</Text>
-      </Stack>
+{/* ── Title + Location + Company ── */}
+<Stack gap={5} mb="md">
+  <Group justify="space-between" align="flex-start" wrap="nowrap">
+    <Text
+      fw={600}
+      size="lg"
+      lineClamp={2}
+      style={{ flex: 1 }}
+    >
+      {title}
+    </Text>
+
+    <Group gap={4} wrap="nowrap" flex={0} mt={7}>
+      <IconMapPin
+        size={15}
+        stroke={1.8}
+        color="#7B3FF2"
+      />
+      <Text
+        size="xs"
+        c="violet"
+        fw={500}
+        lineClamp={1}
+      >
+        {location}
+      </Text>
+    </Group>
+  </Group>
+
+  <Text size="sm" c="dimmed">
+    {company}
+  </Text>
+</Stack>
 
       {/* ── Meta pills ── */}
       <Group gap={8} mb="md" wrap="wrap">
