@@ -93,6 +93,7 @@ interface CompactDatePickerProps {
 function CompactDatePicker({ value, onChange, label, required, error }: CompactDatePickerProps) {
     const today = new Date();
     const [open, setOpen] = useState(false);
+    const [openUpward, setOpenUpward] = useState(false);
     const [viewYear, setViewYear] = useState(value?.getFullYear() ?? today.getFullYear());
     const [viewMonth, setViewMonth] = useState(value?.getMonth() ?? today.getMonth());
     const containerRef = useRef<HTMLDivElement>(null);
@@ -107,15 +108,6 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
         };
         document.addEventListener('mousedown', handler);
         return () => document.removeEventListener('mousedown', handler);
-    }, [open]);
-
-    useEffect(() => {
-        if (!open || !dropdownRef.current) return;
-        const rect = dropdownRef.current.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight - 8) {
-            dropdownRef.current.style.top = 'auto';
-            dropdownRef.current.style.bottom = 'calc(100% + 6px)';
-        }
     }, [open]);
 
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
@@ -180,7 +172,13 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
             <div
                 role="button"
                 tabIndex={0}
-                onClick={() => setOpen(o => !o)}
+                onClick={() => {
+                    if (!open && containerRef.current) {
+                        const rect = containerRef.current.getBoundingClientRect();
+                        setOpenUpward(window.innerHeight - rect.bottom < 320);
+                    }
+                    setOpen(o => !o);
+                }}
                 onKeyDown={(e) => e.key === 'Enter' && setOpen(o => !o)}
                 style={{
                     display: 'flex',
@@ -231,7 +229,9 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
                     ref={dropdownRef}
                     style={{
                         position: 'absolute',
-                        top: 'calc(100% + 6px)',
+                        ...(openUpward
+                            ? { bottom: 'calc(100% + 6px)' }
+                            : { top: 'calc(100% + 6px)' }),
                         left: 0,
                         right: 0,
                         zIndex: 9999,
@@ -646,7 +646,7 @@ export function CreateJobForm({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!validate()) return;  
+        if (!validate()) return;
         showLoader(isUpdate ? 'update' : 'publish');
 
         setIsLoading(true);
@@ -746,7 +746,7 @@ export function CreateJobForm({
                 autoClose: 4000,
             });
         } finally {
-             hideLoader();
+            hideLoader();
             setIsLoading(false);
         }
     };
