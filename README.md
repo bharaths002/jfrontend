@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧑‍💼 Job Portal — Full Stack Admin Dashboard
+# 🧑‍💼 Hire-Re — Full-Stack Job Portal
 
 A full-stack job board management platform built with **Next.js**, **NestJS**, **PostgreSQL**, and **Cloudinary**.  
 Create, manage, publish, and draft job openings with a clean, modern UI.
@@ -180,7 +180,7 @@ DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_NAME
 NODE_ENV=production
 DB_SYNCHRONIZE=false
 CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
-FRONTEND_URL=https://jfrontend.vercel.app/
+FRONTEND_URL=https://hire-re.vercel.app/
 ```
 
 ### Frontend (Vercel)
