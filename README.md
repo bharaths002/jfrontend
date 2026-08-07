@@ -193,8 +193,7 @@ NEXT_PUBLIC_API_URL=https://jbackend-rk8u.onrender.com
 ## 👨‍💻 Author
 
 **Bharath S**  
-Software Associate Engineer @ Negits Solutions, Chennai  
-Full Stack Developer | Node.js · React.js · Vue.js · NestJS · PostgreSQL · AWS
+Full Stack Developer | Node.js · React.js · NestJS · PostgreSQL · AWS
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/bharaths18/)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/bharaths002)
