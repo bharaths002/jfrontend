@@ -11,7 +11,7 @@ import { GlobalLoader } from '@/components/Layout/GlobalLoader';
 import { NavigationLoader } from '@/components/Layout/NavigationLoader';
 
 export const metadata: Metadata = {
-  title: 'Job Portal',
+  title: 'Hire-Re',
   description: 'Find your next opportunity',
 };
 

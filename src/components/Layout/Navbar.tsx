@@ -41,14 +41,37 @@ export function Navbar({ onCreateJob }: NavbarProps) {
         <Container size="xl">
           <Box py="md">
             <Group justify="space-between" align="center">
-              {/* Logo */}
-              <Image
-                src="/logos/companylogo.png"
-                alt="Job Portal"
-                width={40}
-                height={40}
-                style={{ cursor: 'pointer' }}
-              />
+              {/* Logo + Website Name */}
+              <Link
+                href="/"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  textDecoration: 'none',
+                }}
+              >
+                <Image
+                  src="/logos/companylogo.png"
+                  alt="Hire-Re Logo"
+                  width={40}
+                  height={40}
+                  style={{ cursor: 'pointer' }}
+                />
+
+                <Box
+                  component="span"
+                  style={{
+                    fontSize: '22px',
+                    fontWeight: 800,
+                    color: '#7B3FF2',
+                    letterSpacing: '-0.5px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Hire-Re
+                </Box>
+              </Link>
 
               {/* Desktop links */}
               <Group gap="xl" align="center" visibleFrom="md">

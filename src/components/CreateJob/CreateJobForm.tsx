@@ -93,6 +93,7 @@ interface CompactDatePickerProps {
 function CompactDatePicker({ value, onChange, label, required, error }: CompactDatePickerProps) {
     const today = new Date();
     const [open, setOpen] = useState(false);
+    const [openUpward, setOpenUpward] = useState(false);
     const [viewYear, setViewYear] = useState(value?.getFullYear() ?? today.getFullYear());
     const [viewMonth, setViewMonth] = useState(value?.getMonth() ?? today.getMonth());
     const containerRef = useRef<HTMLDivElement>(null);
@@ -108,7 +109,6 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
         document.addEventListener('mousedown', handler);
         return () => document.removeEventListener('mousedown', handler);
     }, [open]);
-
 
     const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
     const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay();
@@ -172,7 +172,13 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
             <div
                 role="button"
                 tabIndex={0}
-                onClick={() => setOpen(o => !o)}
+                onClick={() => {
+                    if (!open && containerRef.current) {
+                        const rect = containerRef.current.getBoundingClientRect();
+                        setOpenUpward(window.innerHeight - rect.bottom < 320);
+                    }
+                    setOpen(o => !o);
+                }}
                 onKeyDown={(e) => e.key === 'Enter' && setOpen(o => !o)}
                 style={{
                     display: 'flex',
@@ -223,7 +229,9 @@ function CompactDatePicker({ value, onChange, label, required, error }: CompactD
                     ref={dropdownRef}
                     style={{
                         position: 'absolute',
-                        bottom: 'calc(100% + 6px)',
+                        ...(openUpward
+                            ? { bottom: 'calc(100% + 6px)' }
+                            : { top: 'calc(100% + 6px)' }),
                         left: 0,
                         right: 0,
                         zIndex: 9999,
@@ -636,53 +644,6 @@ export function CreateJobForm({
     useEffect(() => { setMounted(true); }, []);
     if (!mounted) return null;
 
-
-    const validate = (): boolean => {
-        const newErrors: Record<string, string> = {};
-
-        if (!formData.jobTitle.trim())
-            newErrors.jobTitle = 'Job title is required';
-
-        if (!formData.companyName.trim())
-            newErrors.companyName = 'Company name is required';
-
-        if (!formData.location.trim())
-            newErrors.location = 'Location is required';
-
-        if (!formData.jobType)
-            newErrors.jobType = 'Job type is required';
-
-        if (!resolvedExperience)
-            newErrors.experience = 'Experience is required';
-
-        if (formData.experiencePreset === 'custom' && !formData.experienceCustom.trim())
-            newErrors.experience = 'Please enter your custom experience';
-
-        if (!formData.salaryMin || formData.salaryMin <= 0)
-            newErrors.salaryMin = 'Salary min is required';
-
-        if (!formData.salaryMax || formData.salaryMax <= 0)
-            newErrors.salaryMax = 'Salary max is required';
-
-        if (formData.salaryMin > 0 && formData.salaryMax > 0 && formData.salaryMin >= formData.salaryMax)
-            newErrors.salaryMax = 'Salary max must be greater than min';
-
-        if (!formData.applicationDeadline)
-            newErrors.applicationDeadline = 'Application deadline is required';
-
-        if (!formData.jobDescription.trim())
-            newErrors.jobDescription = 'Job description is required';
-
-        if (!formData.requirements.trim())
-            newErrors.requirements = 'Requirements are required';
-
-        if (!formData.responsibilities.trim())
-            newErrors.responsibilities = 'Responsibilities are required';
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
@@ -791,6 +752,51 @@ export function CreateJobForm({
     };
 
 
+    const validate = (): boolean => {
+        const newErrors: Record<string, string> = {};
+
+        if (!formData.jobTitle.trim())
+            newErrors.jobTitle = 'Job title is required';
+
+        if (!formData.companyName.trim())
+            newErrors.companyName = 'Company name is required';
+
+        if (!formData.location.trim())
+            newErrors.location = 'Location is required';
+
+        if (!formData.jobType)
+            newErrors.jobType = 'Job type is required';
+
+        if (!resolvedExperience)
+            newErrors.experience = 'Experience is required';
+
+        if (formData.experiencePreset === 'custom' && !formData.experienceCustom.trim())
+            newErrors.experience = 'Please enter your custom experience';
+
+        if (!formData.salaryMin || formData.salaryMin <= 0)
+            newErrors.salaryMin = 'Salary min is required';
+
+        if (!formData.salaryMax || formData.salaryMax <= 0)
+            newErrors.salaryMax = 'Salary max is required';
+
+        if (formData.salaryMin > 0 && formData.salaryMax > 0 && formData.salaryMin >= formData.salaryMax)
+            newErrors.salaryMax = 'Salary max must be greater than min';
+
+        if (!formData.applicationDeadline)
+            newErrors.applicationDeadline = 'Application deadline is required';
+
+        if (!formData.jobDescription.trim())
+            newErrors.jobDescription = 'Job description is required';
+
+        if (!formData.requirements.trim())
+            newErrors.requirements = 'Requirements are required';
+
+        if (!formData.responsibilities.trim())
+            newErrors.responsibilities = 'Responsibilities are required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     const handleLocationChange = (value: string | null) => {
         if (value === 'other') {
             setShowCustomLocation(true);
