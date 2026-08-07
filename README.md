@@ -95,7 +95,7 @@ jfrontend/                          jbackend/
 
 ```bash
 git clone https://github.com/bharaths002/jbackend
-git clone https://github.com/bharaths002/jfrontend
+git clone https://github.com/bharaths002/hire-re
 ```
 
 ### 2. Backend setup
