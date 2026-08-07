@@ -163,7 +163,7 @@ npm run dev
 
 | Service | Platform | URL |
 |---|---|---|
-| Frontend | Vercel | `jfrontend.vercel.app` |
+| Frontend | Vercel | `hire-re.vercel.app` |
 | Backend | Render (free tier) | `jbackend-rk8u.onrender.com` |
 | Database | Neon (serverless Postgres) | Managed |
 | Images | Cloudinary (free tier) | `res.cloudinary.com` |
