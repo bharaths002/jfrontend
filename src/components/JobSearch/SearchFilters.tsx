@@ -8,7 +8,7 @@ import {
 import { IconSearch, IconMapPin, IconBriefcase, IconCurrencyRupee } from '@tabler/icons-react';
 import { useSearch } from '@/context/SearchContext';
 
-const LOCATIONS = ['Chennai', 'Mumbai', 'Bengaluru', 'Hyderabad', 'Delhi', 'Pune', 'Remote'];
+const LOCATIONS = ['Chennai', 'Mumbai', 'Bengaluru', 'Hyderabad', 'Remote'];
 const JOB_TYPES = ['Full-time', 'Part-time', 'Contract', 'Internship'];
 
 // ── Searchable location combobox ──────────────────────────────────────────────
